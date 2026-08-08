@@ -1,0 +1,6 @@
+{
+  "name": "KubeSailor",
+  "description": "Your own private cloud. Live in 1 week. Multi-Cluster Private Cloud Platform on bare-metal with HA, GitOps, observability, and CI/CD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
