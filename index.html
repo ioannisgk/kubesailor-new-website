@@ -1312,15 +1312,24 @@
 
   <!-- ================= INTERACTIVE JAVASCRIPT ================= -->
   <script>
-    // Preloader handler
+    // Preloader handler with minimum 500ms visibility
+    const preloaderStartTime = Date.now();
+    const MIN_PRELOADER_SHOW_MS = 500;
+
     function hidePreloader() {
       const preloader = document.getElementById('preloader');
-      if (preloader && !preloader.classList.contains('opacity-0')) {
+      if (!preloader || preloader.dataset.hiding === 'true') return;
+      preloader.dataset.hiding = 'true';
+
+      const elapsed = Date.now() - preloaderStartTime;
+      const delay = Math.max(0, MIN_PRELOADER_SHOW_MS - elapsed);
+
+      setTimeout(() => {
         preloader.classList.add('opacity-0', 'pointer-events-none');
         setTimeout(() => {
           preloader.style.display = 'none';
         }, 500);
-      }
+      }, delay);
     }
     window.addEventListener('load', hidePreloader);
     setTimeout(hidePreloader, 3000);
