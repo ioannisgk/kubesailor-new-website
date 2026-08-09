@@ -41,6 +41,30 @@
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased font-sans selection:bg-cyan-500 selection:text-slate-950">
 
+  <!-- ================= PRELOADER ================= -->
+  <div id="preloader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-950 transition-opacity duration-500 ease-out">
+    <div class="relative flex items-center justify-center">
+      <!-- Outer glowing spinning ring -->
+      <div class="w-20 h-20 rounded-full border-2 border-cyan-500/20 border-t-cyan-400 animate-spin shadow-lg shadow-cyan-500/10"></div>
+      
+      <!-- Centered Anchor Icon Badge -->
+      <div class="absolute w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 p-[1px] flex items-center justify-center shadow-lg shadow-cyan-500/30">
+        <div class="w-full h-full bg-slate-950 rounded-[15px] flex items-center justify-center">
+          <svg class="w-6 h-6 text-cyan-400 animate-pulse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="3"></circle>
+            <line x1="12" y1="22" x2="12" y2="8"></line>
+            <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Brand Label -->
+    <div class="mt-4 flex items-center gap-1 font-mono text-xs tracking-widest text-slate-400 uppercase">
+      <span class="text-white font-bold">Kube</span><span class="text-cyan-400 font-bold">Sailor</span>
+    </div>
+  </div>
+
   <!-- ================= NAVBAR ================= -->
   <header class="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1288,6 +1312,19 @@
 
   <!-- ================= INTERACTIVE JAVASCRIPT ================= -->
   <script>
+    // Preloader handler
+    function hidePreloader() {
+      const preloader = document.getElementById('preloader');
+      if (preloader && !preloader.classList.contains('opacity-0')) {
+        preloader.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500);
+      }
+    }
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 3000);
+
     // Initialize Lucide Icons
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
